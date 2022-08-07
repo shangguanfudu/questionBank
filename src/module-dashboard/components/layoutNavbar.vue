@@ -3,24 +3,22 @@
     <div
       style="float: left; color: #e02f48fc; font-size: 26px; font-weight: 510"
     >
-      <!-- <div class="sidebar-logo"> -->
-      <!-- <img src="../assets/logo.png"> -->
-      <!-- </div> -->
-      <!-- <div class="sidebar-logo-mini"> -->
-      <!-- <img src="../assets/minilogo.png"> -->
-      <!-- </div> -->
-      不会写的看人资是怎么写的+遇到报错请把错误拷贝百度一下+控制台看不懂请翻译+如果是ajax要看network看载荷
+      <!-- <div class="sidebar-logo">
+        <img src="../assets/logo.png" />
+      </div>
+      <div class="sidebar-logo-mini">
+        <img src="../assets/minilogo.png" />
+      </div> -->
     </div>
-    <!-- <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger> -->
+    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
 
-    <!-- <breadcrumb class="breadcrumb-container"></breadcrumb> -->
+    <breadcrumb class="breadcrumb-container"></breadcrumb>
 
     <div class="right-menu">
-      <!-- <div class="item" style="color:#e7189dcf;font-size:30px;">
-       不会写的看人资是怎么写的+遇到报错请把错误拷贝百度一下+控制台看不懂请翻译+如果是ajax要看network
-      </div> -->
+       <div class="item" style="color:#e7189dcf;font-size:30px;">
+      </div>
       <!-- 站内搜索 -->
-      <!-- <div class="item">
+      <div class="item">
         <el-tooltip effect="dark" :content="$t('navbar.search')" placement="bottom">
           <el-button icon="el-icon-search" type="text" class="btnSearch" @click="handleBtnSearch"></el-button>
         </el-tooltip>
@@ -36,17 +34,17 @@
             v-show="showSearchInput"
           ></el-autocomplete>
         </transition>
-      </div> -->
+      </div>
       <!-- 全屏 -->
-      <!-- <el-tooltip effect="dark" :content="$t('navbar.screenfull')" placement="bottom">
+      <el-tooltip effect="dark" :content="$t('navbar.screenfull')" placement="bottom">
         <screenfull class="item"></screenfull>
-      </el-tooltip> -->
+      </el-tooltip>
       <!-- 多语言 -->
-      <!-- <lang-select class="item"></lang-select> -->
+      <lang-select class="item"></lang-select>
       <!-- 换肤 -->
-      <!-- <el-tooltip effect="dark" :content="$t('navbar.theme')" placement="bottom">
+      <el-tooltip effect="dark" :content="$t('navbar.theme')" placement="bottom">
         <theme-picker class="item"></theme-picker>
-      </el-tooltip> -->
+      </el-tooltip>
       <!-- 用户信息 -->
       <el-dropdown class="item">
         <span class="el-dropdown-link">
