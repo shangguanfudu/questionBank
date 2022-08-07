@@ -40,7 +40,7 @@
         <screenfull class="item"></screenfull>
       </el-tooltip>
       <!-- 多语言 -->
-      <lang-select class="item"></lang-select>
+      <!-- <lang-select class="item"></lang-select> -->
       <!-- 换肤 -->
       <el-tooltip effect="dark" :content="$t('navbar.theme')" placement="bottom">
         <theme-picker class="item"></theme-picker>
