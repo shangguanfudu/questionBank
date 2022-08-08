@@ -14,8 +14,8 @@
         </el-select>
       </div>
       <div class="btns">
-        <el-button>清除</el-button>
-        <el-button type="primary">搜索</el-button>
+        <el-button @click="clearInput">清除</el-button>
+        <el-button type="primary" @click="searchSome">搜索</el-button>
       </div>
     </div>
     <!-- 提示区 -->
@@ -68,17 +68,33 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- 修改弹出层组件 -->
+    <EditDialog
+      title="修改目录"
+      valueTitle="目录名称"
+      :dialogVisible.sync="isEditShow"
+      :value="currentValue"
+      @confirmClick="editConfirm"
+    ></EditDialog>
   </el-card>
 </template>
 
 <script>
-import { list, changeState, remove } from '@/api/hmmm/directorys'
+import { list, changeState, remove, update } from '@/api/hmmm/directorys'
+import EditDialog from '@/components/EditDialog'
 export default {
   created () {
     this.getList()
   },
   data () {
     return {
+      isEditShow: false,
+      currentValue: {
+        currentName: '',
+        currentSubject: '',
+        id: null,
+        subjectID: null
+      },
       stateValue: null,
       nameValue: null,
       options: [],
@@ -107,7 +123,26 @@ export default {
       row.state = row.state === 1 ? 0 : 1
       this.$message.success('改变状态成功')
     },
-    editClick () { },
+    editClick (row) {
+      this.currentValue.currentName = row.directoryName
+      this.currentValue.currentSubject = row.subjectName
+      this.currentValue.id = row.id
+      this.currentValue.subjectID = row.subjectID
+      this.isEditShow = true
+    },
+    async editConfirm (value) {
+      try {
+        await update({
+          id: this.currentValue.id,
+          directoryName: value.currentName,
+          subjectID: value.currentSubject
+        })
+        this.$message.success('修改成功')
+        this.getList()
+      } catch (error) {
+        this.$message.error('修改失败')
+      }
+    },
     delClick (id) {
       this.$confirm('此操作将永久删除该目录, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -126,12 +161,26 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    clearInput () {
+      this.nameValue = null
+      this.stateValue = null
+    },
+    async searchSome () {
+      const { data: res } = await list({
+        directoryName: this.nameValue,
+        state: this.stateValue
+      })
+      console.log(res)
+      this.tableData = res.items
+      this.nameValue = null
+      this.stateValue = null
     }
   },
   computed: {},
   watch: {},
   filters: {},
-  components: {}
+  components: { EditDialog }
 }
 </script>
 
