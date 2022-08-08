@@ -1,3 +1,8 @@
+import dayjs from 'dayjs'
+export const dateformat = function (time) {
+  return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+}
+
 function pluralize (time, label) {
   if (time === 1) {
     return time + label
