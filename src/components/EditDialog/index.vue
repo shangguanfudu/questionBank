@@ -7,7 +7,7 @@
   >
     <el-form>
       <el-form-item label="所属科目">
-        <el-select v-model="value.currentSubject">
+        <el-select v-model="value.subjectID">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -18,7 +18,7 @@
         </el-select>
       </el-form-item>
       <el-form-item :label="valueTitle" label-width="68px">
-        <el-input  v-model="value.currentName" autocomplete="off"></el-input>
+        <el-input v-model="value.currentName" autocomplete="off"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

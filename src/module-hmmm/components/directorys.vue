@@ -155,7 +155,7 @@ export default {
         await update({
           id: this.currentValue.id,
           directoryName: value.currentName,
-          subjectID: value.currentSubject
+          subjectID: this.currentValue.subjectID
         })
         this.$message.success('修改成功')
         this.getList()
@@ -203,7 +203,7 @@ export default {
       try {
         await addSome({
           directoryName: this.newValue.currentName,
-          subjectID: this.newValue.currentSubject
+          subjectID: this.newValue.subjectID
         })
         this.newValue = {
           currentName: '',
