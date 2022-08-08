@@ -2,21 +2,26 @@
   <el-card>
     <!-- 头部区域 -->
     <div class="header">
-      <div class="search">
-        <span class="search-title">目录名称</span>
-        <el-input v-model="nameValue" style="width: 200px"></el-input>
+      <div class="left">
+        <div class="search">
+          <span class="search-title">目录名称</span>
+          <el-input v-model="nameValue" style="width: 200px"></el-input>
+        </div>
+        <div class="search">
+          <span class="search-title">状态</span>
+          <el-select v-model="stateValue" placeholder="请选择">
+            <el-option label="启用" :value="1"> </el-option>
+            <el-option label="禁用" :value="0"> </el-option>
+          </el-select>
+        </div>
+        <div class="btns">
+          <el-button @click="clearInput">清除</el-button>
+          <el-button type="primary" @click="searchSome">搜索</el-button>
+        </div>
       </div>
-      <div class="search">
-        <span class="search-title">状态</span>
-        <el-select v-model="stateValue" placeholder="请选择">
-          <el-option label="启用" :value="1"> </el-option>
-          <el-option label="禁用" :value="0"> </el-option>
-        </el-select>
-      </div>
-      <div class="btns">
-        <el-button @click="clearInput">清除</el-button>
-        <el-button type="primary" @click="searchSome">搜索</el-button>
-      </div>
+      <el-button class="add" type="success" @click="addSome" icon="el-icon-edit"
+        >新增目录</el-button
+      >
     </div>
     <!-- 提示区 -->
     <el-alert class="tip" :title="`数据一共${counts}条`" type="info" show-icon>
@@ -68,7 +73,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <!-- 修改弹出层组件 -->
+    <!-- 修改目录弹出层组件 -->
     <EditDialog
       title="修改目录"
       valueTitle="目录名称"
@@ -76,11 +81,19 @@
       :value="currentValue"
       @confirmClick="editConfirm"
     ></EditDialog>
+    <!-- 新增目录弹出层 -->
+    <EditDialog
+      title="新增目录"
+      valueTitle="目录名称"
+      :dialogVisible.sync="isAddShow"
+      :value="newValue"
+      @confirmClick="addConfirm"
+    ></EditDialog>
   </el-card>
 </template>
 
 <script>
-import { list, changeState, remove, update } from '@/api/hmmm/directorys'
+import { list, changeState, remove, update, add as addSome } from '@/api/hmmm/directorys'
 import EditDialog from '@/components/EditDialog'
 export default {
   created () {
@@ -89,7 +102,14 @@ export default {
   data () {
     return {
       isEditShow: false,
+      isAddShow: false,
       currentValue: {
+        currentName: '',
+        currentSubject: '',
+        id: null,
+        subjectID: null
+      },
+      newValue: {
         currentName: '',
         currentSubject: '',
         id: null,
@@ -171,10 +191,31 @@ export default {
         directoryName: this.nameValue,
         state: this.stateValue
       })
-      console.log(res)
+      // console.log(res)
       this.tableData = res.items
       this.nameValue = null
       this.stateValue = null
+    },
+    addSome () {
+      this.isAddShow = true
+    },
+    async addConfirm () {
+      try {
+        await addSome({
+          directoryName: this.newValue.currentName,
+          subjectID: this.newValue.currentSubject
+        })
+        this.newValue = {
+          currentName: '',
+          currentSubject: '',
+          id: null,
+          subjectID: null
+        }
+        this.getList()
+        this.$message.success('添加成功')
+      } catch (error) {
+        this.$message.error('添加失败')
+      }
     }
   },
   computed: {},
@@ -187,17 +228,24 @@ export default {
 <style scoped lang='less'>
 .header {
   display: flex;
-  .search {
-    margin-right: 20px;
-    .search-title {
-      color: #666;
-      font-weight: 700;
-      margin-right: 15px;
+  justify-content: space-between;
+  .left {
+    display: flex;
+    .search {
+      margin-right: 20px;
+      .search-title {
+        color: #666;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+    }
+    .btns {
+      margin-left: 10px;
     }
   }
-  .btns {
-    margin-left: 10px;
-  }
+  // .add {
+
+  // }
 }
 .tip {
   margin: 15px 0;
