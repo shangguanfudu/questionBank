@@ -64,7 +64,7 @@ export const direction = [
 ]
 
 // 精品审核
-export const chkType = [
+export const chkState = [
   {
     value: 0,
     label: '待审核'
@@ -80,7 +80,7 @@ export const chkType = [
 ]
 
 // 发布状态
-export const publishType = [
+export const publishState = [
   {
     value: 1,
     label: '待发布'
