@@ -10,17 +10,29 @@
         <img src="../assets/minilogo.png" />
       </div> -->
     </div>
-    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
+    <hamburger
+      class="hamburger-container"
+      :toggleClick="toggleSideBar"
+      :isActive="sidebar.opened"
+    ></hamburger>
 
     <breadcrumb class="breadcrumb-container"></breadcrumb>
 
     <div class="right-menu">
-       <div class="item" style="color:#e7189dcf;font-size:30px;">
-      </div>
+      <div class="item" style="color: #e7189dcf; font-size: 30px"></div>
       <!-- 站内搜索 -->
       <div class="item">
-        <el-tooltip effect="dark" :content="$t('navbar.search')" placement="bottom">
-          <el-button icon="el-icon-search" type="text" class="btnSearch" @click="handleBtnSearch"></el-button>
+        <el-tooltip
+          effect="dark"
+          :content="$t('navbar.search')"
+          placement="bottom"
+        >
+          <el-button
+            icon="el-icon-search"
+            type="text"
+            class="btnSearch"
+            @click="handleBtnSearch"
+          ></el-button>
         </el-tooltip>
         <transition name="el-fade-in-linear">
           <el-autocomplete
@@ -36,13 +48,21 @@
         </transition>
       </div>
       <!-- 全屏 -->
-      <el-tooltip effect="dark" :content="$t('navbar.screenfull')" placement="bottom">
+      <el-tooltip
+        effect="dark"
+        :content="$t('navbar.screenfull')"
+        placement="bottom"
+      >
         <screenfull class="item"></screenfull>
       </el-tooltip>
       <!-- 多语言 -->
       <!-- <lang-select class="item"></lang-select> -->
       <!-- 换肤 -->
-      <el-tooltip effect="dark" :content="$t('navbar.theme')" placement="bottom">
+      <el-tooltip
+        effect="dark"
+        :content="$t('navbar.theme')"
+        placement="bottom"
+      >
         <theme-picker class="item"></theme-picker>
       </el-tooltip>
       <!-- 用户信息 -->
@@ -74,6 +94,7 @@ import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import ThemePicker from '@/components/ThemePicker'
 import { search } from '@/api/base/menus'
+import LangSelect from '@/components/LangSelect'
 
 export default {
   name: 'layoutNavBar',
@@ -81,7 +102,8 @@ export default {
     Breadcrumb,
     Hamburger,
     Screenfull,
-    ThemePicker
+    ThemePicker,
+    LangSelect
   },
   computed: {
     ...mapGetters(['sidebar', 'name', 'avatar'])

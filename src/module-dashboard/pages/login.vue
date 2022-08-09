@@ -2,59 +2,60 @@
   <div class="login-container">
     <div class="loginBox">
       <el-form
-      class="login-form"
-      autocomplete="on"
-      :model="loginForm"
-      :rules="loginRules"
-      ref="loginForm"
-      label-position="left"
-    >
-      <div class="title-container">
-        <!-- <h3 class="title">{{$t('login.title')}}</h3> -->
-        <div class="logoInfo clearfix">
-          <em class="logo"></em>
-          <span class="logoFontZ">黑马面面</span>
-          <span>用户登录</span>
+        class="login-form"
+        autocomplete="on"
+        :model="loginForm"
+        :rules="loginRules"
+        ref="loginForm"
+        label-position="left"
+      >
+        <div class="title-container">
+          <!-- <h3 class="title">{{$t('login.title')}}</h3> -->
+          <div class="logoInfo clearfix">
+            <em class="logo"></em>
+            <span class="logoFontZ">黑马面面</span>
+            <span>用户登录</span>
+          </div>
+          <lang-select class="set-language"></lang-select>
         </div>
-        <lang-select class="set-language"></lang-select>
-      </div>
-      <el-form-item prop="username">
-        <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user"/>
-        </span>
-        <el-input
-          name="username"
-          type="text"
-          v-model="loginForm.username"
-          autocomplete="on"
-          placeholder="username"
-        />
-      </el-form-item>
+        <el-form-item prop="username">
+          <span class="svg-container svg-container_login">
+            <svg-icon icon-class="user" />
+          </span>
+          <el-input
+            name="username"
+            type="text"
+            v-model="loginForm.username"
+            autocomplete="on"
+            placeholder="username"
+          />
+        </el-form-item>
 
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password"/>
-        </span>
-        <el-input
-          name="password"
-          :type="passwordType"
-          @keyup.enter.native="handleLogin"
-          v-model="loginForm.password"
-          autocomplete="on"
-          placeholder="password"
-        />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon icon-class="eye"/>
-        </span>
-      </el-form-item>
+        <el-form-item prop="password">
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+          <el-input
+            name="password"
+            :type="passwordType"
+            @keyup.enter.native="handleLogin"
+            v-model="loginForm.password"
+            autocomplete="on"
+            placeholder="password"
+          />
+          <span class="show-pwd" @click="showPwd">
+            <svg-icon icon-class="eye" />
+          </span>
+        </el-form-item>
 
-      <el-button
-        type="primary"
-        style="width:100%;margin-bottom:30px;"
-        :loading="loading"
-        @click.native.prevent="handleLogin"
-      >{{$t('login.logIn')}}</el-button>
-    </el-form>
+        <el-button
+          type="primary"
+          style="width: 100%; margin-bottom: 30px"
+          :loading="loading"
+          @click.native.prevent="handleLogin"
+          >{{ $t("login.logIn") }}</el-button
+        >
+      </el-form>
     </div>
   </div>
 </template>
@@ -165,12 +166,12 @@ $light_gray: #333;
     }
   }
   .el-form-item {
-    border: 1px solid #DCDFE6;
+    border: 1px solid #dcdfe6;
     background: #fff;
     border-radius: 5px;
     color: #454545;
   }
-  .el-button--medium{
+  .el-button--medium {
     height: 50px;
     line-height: 20px;
     font-size: 22px;
@@ -189,14 +190,14 @@ $light_gray: #333;
   width: 100%;
   background-color: $bg;
 
-  background: url('./../assets/bg.jpg');
+  background: url("./../assets/bg.jpg");
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  .loginBox{
-     height: 100%;
-     width: 100%;
-    background: url('./../assets/logingBg.png') no-repeat 100% 100%;
+  .loginBox {
+    height: 100%;
+    width: 100%;
+    background: url("./../assets/logingBg.png") no-repeat 100% 100%;
     position: relative;
   }
   .login-form {
@@ -206,7 +207,7 @@ $light_gray: #333;
     width: 520px;
     padding: 35px 35px 15px 35px;
     margin: -200px 0 0 0;
-    background:#f5f5f5;
+    background: #f5f5f5;
   }
   .tips {
     font-size: 14px;
@@ -260,17 +261,17 @@ $light_gray: #333;
     bottom: 28px;
   }
 }
-.logoInfo{
-  padding-bottom:15px;
+.logoInfo {
+  padding-bottom: 15px;
 }
-.logoInfo span{
+.logoInfo span {
   font-size: 22px;
   padding: 0 10px;
   float: left;
 }
-.logoInfo .logo{
+.logoInfo .logo {
   background: url(../assets/loginLogo.png) no-repeat;
-  display:inline-block;
+  display: inline-block;
   width: 35px;
   height: 26px;
   float: left;

@@ -9,6 +9,7 @@ import store from './store'
 import i18n from './lang' // Internationalization
 import './icons' // icon
 import * as filters from './filters' // global filters
+import dayjs from 'dayjs'
 // font-awesome
 import 'font-awesome/css/font-awesome.css'
 
@@ -20,7 +21,7 @@ import dashboard from '@/module-dashboard/' // 面板
 import hmmm from '@/module-hmmm/'
 import Cookies from 'js-cookie'
 axios.defaults.baseURL = 'http://hmmm-api.itheima.net'
-
+Vue.prototype.$dayjs = dayjs
 const TokenKey = 'Admin-Token'
 axios.interceptors.request.use(
   config => {
