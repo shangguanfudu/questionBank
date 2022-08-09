@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card
-      ><search-form></search-form>
+      ><search-form @onSubmit="onSubmit"></search-form>
       <question-table
         @chagePages="changePages"
         :tableData="tableData"
