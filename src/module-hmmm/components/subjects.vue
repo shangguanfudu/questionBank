@@ -20,7 +20,7 @@
             class="add"
             type="success"
             icon="el-icon-edit"
-            @click="dialogVisible = true"
+            @click="addSubject"
             >新增学科</el-button
           >
         </el-col>
@@ -170,6 +170,12 @@ export default {
     handleClose (done) {
       done()
     },
+    addSubject () {
+      this.dialogVisible = true
+      this.saveForm.saveVal = ''
+      this.isFrontDisplay = false
+      this.id = null
+    },
     dietSubject (data) {
       data.isFrontDisplay === 1 ? this.isFrontDisplay = true : this.isFrontDisplay = false
       this.id = data.id
@@ -180,7 +186,6 @@ export default {
     async saveSubject () {
       // 如果有 id 是修改，否则新增
       if (this.id) {
-        console.log(this.id)
         await update({ subjectName: this.saveForm.saveVal, id: this.id, isFrontDisplay: this.isFrontDisplay })
         this.$message.success('成功修改学科')
       } else {
